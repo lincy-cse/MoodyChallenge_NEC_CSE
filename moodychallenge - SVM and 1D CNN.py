@@ -39,6 +39,7 @@ predict=model.predict(test_X)
 from sklearn import metrics
 print("acuracy:", metrics.accuracy_score(test_Y,y_pred=predict))
 
+#1D- CNN
 import tensorflow as tf
 
 from tensorflow.keras import datasets, layers, models
@@ -68,3 +69,10 @@ cnn_model.compile(optimizer='adam', loss = 'sparse_categorical_crossentropy', me
 cnn_model.summary()
 
 cnn_model_history = cnn_model.fit(train_X, train_Y, epochs=10, batch_size = 10, validation_data = (test_X, test_Y))
+port matplotlib.pyplot as plt
+plt.plot(cnn_model_history.history['accuracy'])
+plt.plot(cnn_model_history.history['val_accuracy'])
+plt.legend(["accuracy","val_accuracy"])
+plt.title('Accuracy Vs Val_Accuracy')
+plt.xlabel('Epoch')
+plt.ylabel('Accuracy')
